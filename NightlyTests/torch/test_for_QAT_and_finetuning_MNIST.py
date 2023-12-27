@@ -37,7 +37,6 @@
 import unittest
 import os
 import pytest
-import random
 import torch
 import numpy as np
 import copy
@@ -46,6 +45,8 @@ from aimet_torch.quantsim import QuantizationSimModel, load_checkpoint, save_che
 import models.mnist_torch_model as mnist_model
 from aimet_torch.qc_quantize_op import StaticGridQuantWrapper
 from aimet_common.defs import QuantScheme, QuantizationDataType
+import secrets
+
 path = str('../data')
 filename_prefix = 'quantized_mnist'
 
@@ -247,7 +248,7 @@ class QuantizationSimAcceptanceTests(unittest.TestCase):
 
 def seed_all(seed=1029):
     """ Setup seed """
-    random.seed(seed)
+    secrets.SystemRandom().seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)

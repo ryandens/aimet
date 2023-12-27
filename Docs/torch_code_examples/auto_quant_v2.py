@@ -36,8 +36,6 @@
 # =============================================================================
 
 """ Code example for AutoQuant """
-
-import random
 from typing import Optional
 
 import torch
@@ -46,6 +44,7 @@ from torchvision import models, datasets, transforms
 
 from aimet_torch.adaround.adaround_weight import AdaroundParameters
 from aimet_torch.auto_quant_v2 import AutoQuant
+import secrets
 
 # Step 1. Define constants and helper functions
 EVAL_DATASET_SIZE = 5000
@@ -56,7 +55,7 @@ _subset_samplers = {}
 
 def _create_sampled_data_loader(dataset, num_samples):
     if num_samples not in _subset_samplers:
-        indices = random.sample(range(len(dataset)), num_samples)
+        indices = secrets.SystemRandom().sample(range(len(dataset)), num_samples)
         _subset_samplers[num_samples] = SubsetRandomSampler(indices=indices)
     return DataLoader(dataset,
                       sampler=_subset_samplers[num_samples],

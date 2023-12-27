@@ -40,7 +40,6 @@ import json
 import unittest
 import pytest
 import logging
-import random
 import os
 import numpy as np
 import torch
@@ -52,6 +51,7 @@ from aimet_common.defs import QuantScheme
 from aimet_torch.utils import create_fake_data_loader, create_rand_tensors_given_shapes
 from aimet_torch.quantsim import QuantizationSimModel
 from aimet_torch.adaround.adaround_weight import Adaround, AdaroundParameters
+import secrets
 
 logger = AimetLogger.get_area_logger(AimetLogger.LogAreas.Test)
 
@@ -170,7 +170,7 @@ class AdaroundAcceptanceTests(unittest.TestCase):
 
 def seed_all(seed=1029):
     """ Setup seed """
-    random.seed(seed)
+    secrets.SystemRandom().seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
