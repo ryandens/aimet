@@ -974,7 +974,7 @@ class TestQuantizationSimStaticGrad:
         assert isinstance(encoding_data["param_encodings"]["conv1.weight"], list)
 
         with open('./data/resnet50.encodings.yaml') as yaml_file:
-            encoding_data = yaml.load(yaml_file, Loader=yaml.FullLoader)
+            encoding_data = yaml.load(yaml_file, Loader=yaml.SafeLoader)
 
         activation_keys = list(encoding_data["activation_encodings"].keys())
         assert activation_keys[0] == "103"
@@ -1019,7 +1019,7 @@ class TestQuantizationSimStaticGrad:
             assert 10 == param_encodings['conv1_a.weight'][0]['max']
 
         with open('./data/two_input_model.encodings.yaml', 'r') as fp_yaml:
-            encodings = yaml.load(fp_yaml, Loader=yaml.FullLoader)
+            encodings = yaml.load(fp_yaml, Loader=yaml.SafeLoader)
 
             activation_encodings = encodings['activation_encodings']
             param_encodings = encodings['param_encodings']
