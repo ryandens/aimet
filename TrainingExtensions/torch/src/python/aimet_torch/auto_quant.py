@@ -620,7 +620,7 @@ class _EvalManager:
         :return: Diagnostics string in html format.
         """
         loader = jinja2.FileSystemLoader(os.path.dirname(os.path.abspath(__file__)))
-        env = jinja2.Environment(loader=loader)
+        env = jinja2.Environment(loader=loader, autoescape=True)
         template = env.get_template("auto_quant_diagnostics_template.html")
 
         if any(sess.diagnostics.contains_bokeh() for sess in self._all_sessions):
