@@ -44,6 +44,7 @@ import pickle
 from typing import Any, Callable, Optional, Generic, TypeVar
 
 from aimet_common.utils import AimetLogger
+import fickling
 
 
 _logger = AimetLogger.get_area_logger(AimetLogger.LogAreas.Utils)
@@ -133,7 +134,7 @@ class _PickleSerializationProtocol(SerializationProtocolBase):
         if os.path.exists(filename):
             # Cached file exists (cache hit). Load from cache.
             with open(filename, "rb") as f:
-                return pickle.load(f)
+                return fickling.load(f)
         raise CacheMiss
 
 

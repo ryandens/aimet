@@ -53,6 +53,7 @@ from torchvision import datasets, transforms
 from aimet_common.defs import QuantScheme, QuantizationDataType, MAP_QUANT_SCHEME_TO_PYMO
 from aimet_common.utils import AimetLogger, Handle, log_with_error_and_assert_if_false
 import aimet_common.libpymo as libpymo
+import fickling
 
 
 logger = AimetLogger.get_area_logger(AimetLogger.LogAreas.Utils)
@@ -221,7 +222,7 @@ class CachedDataset(Dataset):
         path = os.path.join(self._path, 'model_inputs_' + str(index))
 
         with open(path, 'rb') as file:
-            batch = pickle.load(file)
+            batch = fickling.load(file)
 
         return batch
 

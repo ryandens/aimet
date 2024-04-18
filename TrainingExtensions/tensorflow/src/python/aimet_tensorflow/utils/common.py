@@ -44,6 +44,7 @@ import numpy as np
 import tensorflow as tf
 from aimet_common.utils import AimetLogger
 from aimet_tensorflow.utils.graph_saver import save_and_load_graph
+import fickling
 
 logger = AimetLogger.get_area_logger(AimetLogger.LogAreas.Utils)
 
@@ -390,7 +391,7 @@ def load_data_from_pickle_file(filename: str):
     """
 
     infile = open(filename, 'rb')
-    loaded_data = pickle.load(infile)
+    loaded_data = fickling.load(infile)
     infile.close()
     return loaded_data
 

@@ -74,6 +74,7 @@ from aimet_common.cache import Cache
 from aimet_common.defs import QuantScheme
 from aimet_common.utils import AimetLogger, Spinner
 from aimet_common.quantsim import validate_quantsim_inputs
+import fickling
 
 tf.compat.v1.disable_eager_execution()
 
@@ -1046,7 +1047,7 @@ class _EvalSession:  # pylint: disable=too-many-instance-attributes, too-many-ar
             def load(self):
                 """Load cached result """
                 with open(self._filename, "rb") as f:
-                    return pickle.load(f)
+                    return fickling.load(f)
 
         @functools.wraps(fn)
         def wrapper(*args, **kwargs):

@@ -65,6 +65,7 @@ from aimet_torch import torchscript_utils, utils, transformer_utils, onnx_utils
 from aimet_torch.onnx_utils import OnnxSaver, OnnxExportApiArgs, CustomMarker, get_pytorch_name_from_onnx_name
 from aimet_torch.meta.connectedgraph import ConnectedGraph
 from aimet_torch.qc_quantize_recurrent import QcQuantizeRecurrent
+import fickling
 
 
 logger = AimetLogger.get_area_logger(AimetLogger.LogAreas.Quant)
@@ -1822,7 +1823,7 @@ def load_checkpoint(file_path: str) -> QuantizationSimModel:
     :return: A new instance of the QuantizationSimModel created after loading the checkpoint
     """
     with open(file_path, 'rb') as file:
-        sim = pickle.load(file)
+        sim = fickling.load(file)
         return sim
 
 
