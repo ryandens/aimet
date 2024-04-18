@@ -46,6 +46,7 @@ from onnx import helper, numpy_helper, mapping
 from packaging import version
 
 from aimet_common.utils import AimetLogger
+import fickling
 
 # pylint: disable=no-name-in-module, ungrouped-imports
 if version.parse(onnx.__version__) >= version.parse("1.14.0"):
@@ -404,7 +405,7 @@ class CachedDataset:
         path = os.path.join(self._path, 'model_inputs_' + str(index))
 
         with open(path, 'rb') as file:
-            batch = pickle.load(file)
+            batch = fickling.load(file)
 
         return batch
 

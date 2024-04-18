@@ -36,12 +36,12 @@
 # =============================================================================
 
 """ Class for visualizing after compression is completed"""
-import pickle
 import pandas as pd
 from bokeh.models import ColumnDataSource, DataTable, TableColumn
 from aimet_common.compression_algo import CompressionAlgo
 from aimet_common.bokeh_plots import BokehServerSession
 from aimet_common import plotting_utils
+import fickling
 
 
 class VisualizeCompression:
@@ -59,7 +59,7 @@ class VisualizeCompression:
         :return: None
         """
         infile = open(saved_eval_scores_dict_path, 'rb')
-        eval_scores_dict = pickle.load(infile)
+        eval_scores_dict = fickling.load(infile)
         infile.close()
 
         eval_scores_data_frame = pd.DataFrame.from_dict(eval_scores_dict).T

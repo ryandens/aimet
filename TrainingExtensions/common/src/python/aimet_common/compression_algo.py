@@ -48,6 +48,7 @@ from aimet_common.pruner import Pruner
 from aimet_common.comp_ratio_select import CompRatioSelectAlgo
 from aimet_common.layer_database import LayerDatabase
 from aimet_common import plotting_utils
+import fickling
 
 
 class CompressionAlgo:
@@ -154,6 +155,6 @@ class CompressionAlgo:
         """
 
         with open(comp_ratio_list_path, 'rb') as f:
-            comp_ratios = pickle.load(f)
+            comp_ratios = fickling.load(f)
 
         return comp_ratios

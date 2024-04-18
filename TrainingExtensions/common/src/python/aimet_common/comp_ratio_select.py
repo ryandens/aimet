@@ -57,6 +57,7 @@ from aimet_common.pruner import Pruner
 from aimet_common import cost_calculator as cc
 from aimet_common.layer_database import Layer, LayerDatabase
 from aimet_common.comp_ratio_rounder import CompRatioRounder
+import fickling
 
 
 logger = AimetLogger.get_area_logger(AimetLogger.LogAreas.CompRatioSelect)
@@ -136,7 +137,7 @@ class GreedyCompRatioSelectAlgo(CompRatioSelectAlgo):
     def _unpickle_eval_scores_dict(saved_eval_scores_dict_path: str):
 
         with open(saved_eval_scores_dict_path, 'rb') as f:
-            eval_dict = pickle.load(f)
+            eval_dict = fickling.load(f)
 
         logger.info("Greedy selection: Read eval dict from %s", saved_eval_scores_dict_path)
         return eval_dict
